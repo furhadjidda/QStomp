@@ -745,8 +745,9 @@ void QStompClient::sendFrame(const QStompRequestFrame &frame)
 	if (d->m_socket == NULL || d->m_socket->state() != QAbstractSocket::ConnectedState)
 		return;
 	QByteArray serialized = frame.toByteArray();
-	serialized.append('\0');
-	serialized.append('\n');
+    serialized.append('\0');
+    //serialized.append('\n');
+    //qDebug() << "serialized = " << serialized;
 	d->m_socket->write(serialized);
 }
 
